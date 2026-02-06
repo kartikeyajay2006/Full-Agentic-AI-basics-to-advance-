@@ -1,17 +1,17 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 import streamlit as st 
-
 load_dotenv()
 
-st.header("Research Tool")
-user_input = st.text_input("Enter your prompt :=> ")
+st.markdown("<P style='text-align: center; color: red; font-size: 30px;'>WELCOME TO THE PROMPT UI</P>", unsafe_allow_html=True)
+st.header("ENTER YOUR PROMPT")
 
-if st.button('summarize'):
-    if user_input.strip() == "":
-        st.warning("Please enter a prompt")
+k =st.text_input("Enter your prompt here:=> ")
+
+if st.button("submit"):
+    if (k.strip()==""):
+        st.warning("Please enter a valid prompt")
     else:
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
-
-        response = llm.invoke(user_input)
-        st.write(response.content)
+        llm =ChatGoogleGenerativeAI(model="gemini-2.5-flash") 
+        res =llm.invoke(k)
+        st.write(res.content)
